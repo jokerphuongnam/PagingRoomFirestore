@@ -14,8 +14,12 @@ class ShowFoodAdapter : PagedListAdapter<Food, ShowFoodAdapter.FoodViewHolder>(d
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) = holder.bind(getItem(position))
 
     class FoodViewHolder(private val itemBinding: ItemShowFoodBinding): RecyclerView.ViewHolder(itemBinding.root) {
+        private var food:Food? = null
         fun bind(item: Food?) {
-
+            item.also {
+                itemBinding.food = it
+                food = it
+            }
         }
 
         companion object{

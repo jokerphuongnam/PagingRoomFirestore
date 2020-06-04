@@ -1,10 +1,7 @@
 package nam.joker.pagingroomfirestore.ui.main.showfood
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import nam.joker.pagingroomfirestore.R
 import nam.joker.pagingroomfirestore.databinding.FragmentShowFoodBinding
@@ -20,9 +17,19 @@ class ShowFoodFragment : BaseFragment<ShowFoodViewModel, FragmentShowFoodBinding
     override fun getLayout(): Int = R.layout.fragment_show_food
 
     override fun onViewCreated() {
+        baseViewmodel.check()
         with(baseBinding.showFoodRecycler){
             adapter = showFoodAdapter
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        }
+        observerData(baseViewmodel.liveDataListFood, Observer { listFood ->
+            showFoodAdapter.submitList(listFood)
+        })
+        with(baseBinding.refreshShowfood) {
+            observerData(baseViewmodel.isLoading, Observer { isLoad ->
+                isRefreshing = isLoad
+            })
+            setOnRefreshListener { baseViewmodel.refresh() }
         }
     }
 }

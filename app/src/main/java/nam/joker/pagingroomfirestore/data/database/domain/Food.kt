@@ -18,8 +18,15 @@ data class Food(
     @ColumnInfo(name = "id")
     var id: Int = 0
     constructor(): this("","")
-    fun gan(food: Food){
+    fun changeData(food: Food){
         this.name = food.name
         this.description = food.description
+    }
+    fun changeData(name: String, description: String){
+        this.name = name
+        this.description = description
+    }
+    companion object{
+        val NAME_MODEL = Food::class.simpleName.toString()
     }
 }
