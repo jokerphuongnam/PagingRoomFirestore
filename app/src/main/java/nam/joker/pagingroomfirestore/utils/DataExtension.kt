@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * chưa đủ kiến thức
@@ -17,7 +18,9 @@ suspend fun <T> LiveData<T?>.toFlow() = channelFlow {
     val observer = Observer<T?> { data ->
         offer(data)
     }
-    observeForever(observer)
+    withContext(Dispatchers.Main.immediate){
+        observeForever(observer)
+    }
     invokeOnClose {
         removeObserver(observer)
     }

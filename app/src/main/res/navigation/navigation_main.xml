@@ -9,5 +9,14 @@
         android:id="@+id/showFoodFragment"
         android:name="nam.joker.pagingroomfirestore.ui.main.showfood.ShowFoodFragment"
         android:label="fragment_show_food"
-        tools:layout="@layout/fragment_show_food" />
+        tools:layout="@layout/fragment_show_food" >
+        <action
+            android:id="@+id/to_add_food"
+            app:destination="@id/addFoodFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFoodFragment"
+        android:name="nam.joker.pagingroomfirestore.ui.main.addfood.AddFoodFragment"
+        android:label="fragment_add_food"
+        tools:layout="@layout/fragment_add_food" />
 </navigation>

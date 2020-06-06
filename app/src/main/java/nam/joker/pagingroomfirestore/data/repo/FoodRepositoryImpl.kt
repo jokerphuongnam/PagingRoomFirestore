@@ -42,7 +42,6 @@ class FoodRepositoryImpl(override var local: LocalConnect, override var network:
 
     /**
      * tạo bộ cài đặt, cài đặt cho LivePagedListBuilder để trả về LiveData và ép kiểu về Flow (LiveData nằm ở ViewModel)
-     * chưa đủ kiến thức
      * */
     override fun getOnePage(): Flow<PagedList<Food>?> = flowData
 
