@@ -14,19 +14,29 @@ data class Food(
     @ColumnInfo(name = "description") var description: String
 ) : Parcelable {
     @IgnoredOnParcel
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "id")
     var id: Int = 0
-    constructor(): this("","")
-    fun changeData(food: Food){
+
+    constructor() : this("", "")
+
+    fun changeData(food: Food) {
         this.name = food.name
         this.description = food.description
     }
-    fun changeData(name: String, description: String){
+
+    fun changeData(name: String, description: String) {
         this.name = name
         this.description = description
     }
-    companion object{
+
+    fun changeData(id: Int, name: String, description: String) {
+        this.id = id
+        this.name = name
+        this.description = description
+    }
+
+    companion object {
         val NAME_MODEL = Food::class.simpleName.toString()
     }
 }

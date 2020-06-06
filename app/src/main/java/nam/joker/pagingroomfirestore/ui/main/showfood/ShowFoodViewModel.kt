@@ -1,27 +1,27 @@
 package nam.joker.pagingroomfirestore.ui.main.showfood
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.paging.PagedList
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.InternalCoroutinesApi
 import nam.joker.pagingroomfirestore.data.database.domain.Food
 import nam.joker.pagingroomfirestore.data.usecase.ShowFoodUseCase
 
+@InternalCoroutinesApi
 class ShowFoodViewModel(private val useCase: ShowFoodUseCase) : ViewModel() {
-    fun check() {
-        useCase.check()
-    }
 
     val liveDataListFood by lazy {
 //        MutableLiveData<PagedList<Food>?>().also {
 //            viewModelScope.launch(Dispatchers.IO) {
-//                useCase.getOnePage().collect { data ->
+//                useCase.getOnePage().collect {data->
 //                    it.postValue(data)
 //                }
 //            }
 //        }
-        useCase.getOnePage()
+        useCase.getOnePage().asLiveData(Dispatchers.IO)
     }
     val isLoading: LiveData<Boolean> by lazy {
         Transformations.map(liveDataListFood) { data ->

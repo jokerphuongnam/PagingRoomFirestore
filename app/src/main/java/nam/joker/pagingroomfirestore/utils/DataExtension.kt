@@ -1,5 +1,6 @@
 package nam.joker.pagingroomfirestore.utils
 
+import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import kotlinx.coroutines.Dispatchers

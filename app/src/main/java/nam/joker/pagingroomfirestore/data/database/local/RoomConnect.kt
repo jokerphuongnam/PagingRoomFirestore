@@ -9,10 +9,6 @@ import nam.joker.pagingroomfirestore.data.database.local.LocalConnect.Companion.
 
 @Database(entities = [Food::class], version = DB_VERSION)
 abstract class RoomConnect : RoomDatabase(), LocalConnect {
-    override fun check() {
-        Log.d("bbbbbbbbbbbbbbbbbbbbb", "local connect")
-    }
-
     /**
      * getFoodDao sẽ được implement bằng room
      * */
